@@ -1,49 +1,80 @@
 import React, { Component } from 'react'
-import './App.css'
-import AddTodo from './components/addtodo'
-let tasks = []
+import AddForm from './components/Forms/AddForm';
+import TopForms from './components/Forms/TopForms';
+import HeaderPage from './components/HeaderPage';
+import TaskList from './components/Tasks/TaskList';
+import NoTasks from './components/NoTasks';
 
+// Import CSS
+import './App.css';
+import 'remixicon/fonts/remixicon.css';
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       taskTitle: '',
       taskDay: '',
       taskTime: '',
-    }
-    this.addTask = this.addTask.bind(this)
+      openAdd: false,
+      tasks: [],
+    };
+    this.addTask = this.addTask.bind(this);
   }
+
+  toggleBtn = (e) => {
+    this.setState((prevState) => {
+      return { openAdd: !prevState.openAdd };
+    });
+  };
+
   handleChange = (e) => {
     this.setState({
-      taskTitle: e.target.value,
-    })
-  }
-  addTask(task, day, time) {
-    const obj = {
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  addTask(title, day, time) {
+    const task = {
       id: Date.now(),
-      title: task,
+      title: title,
       day: day,
       time: time,
       isDone: false,
-    }
-
-    tasks.push(obj)
-    console.log(tasks)
+    };
+    this.setState((prevState) => {
+      return {
+        tasks: [...prevState.tasks, task],
+        taskTitle: '',
+        taskDay: '',
+        taskTime: '',
+      };
+    });
+    this.toggleBtn();
   }
 
   render() {
+    const { taskTitle, taskDay, taskTime, openAdd, tasks } = this.state;
     return (
-      <div>
-        <h1>ToDo App in ReactJS</h1>
-        <AddTodo
-          task={{ taskTitle: this.state.taskTitle, taskTime: this.state.taskTime,
-            taskDay: this.state.taskDay
-          }}
-          handleChange={this.handleChange}
-          addTask={this.addTask}
-        />
+      <div className='container'>
+        <HeaderPage />
+        <main className='page-main'>
+          <section className='add-sec'>
+            <TopForms toggleBtn={this.toggleBtn} openAdd={openAdd} />
+
+            <AddForm
+              task={{ taskTitle, taskTime, taskDay }}
+              handleChange={this.handleChange}
+              addTask={this.addTask}
+              openAdd={openAdd}
+            />
+          </section>
+
+          <section className='view-sec'>
+            {tasks.length ? <TaskList tasks={tasks} /> : <NoTasks />}
+          </section>
+        </main>
       </div>
-    )
+    );
   }
 }
 
