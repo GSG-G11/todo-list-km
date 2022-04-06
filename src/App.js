@@ -72,7 +72,6 @@ class App extends Component {
     thisTask[0].title = taskTitle;
     thisTask[0].day = taskDay;
     thisTask[0].time = taskTime;
-    console.log(thisTask);
     this.setState({ tasks: tasks, openAdd: false, editMode: false });
   };
 
