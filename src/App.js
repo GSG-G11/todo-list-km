@@ -1,31 +1,34 @@
-import React, { Component } from 'react';
-import './App.css';
-import AddTodo from './components/addtodo';
+import React, { Component } from 'react'
+import './App.css'
+import AddTodo from './components/addtodo'
+let tasks = []
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      inputValue: '',
-      items: [],
-      isDone: false,
-    };
-    this.addTask = this.addTask.bind(this);
+      taskTitle: '',
+      taskDay: '',
+      taskTime: '',
+    }
+    this.addTask = this.addTask.bind(this)
   }
   handleChange = (e) => {
     this.setState({
-      inputValue: e.target.value,
-    });
-  };
-  addTask(input) {
+      taskTitle: e.target.value,
+    })
+  }
+  addTask(task, day, time) {
     const obj = {
       id: Date.now(),
-      content: input,
-      isDone: this.state.isDone
-    };
-    console.log(obj);
-    this.setState({ items: [...this.state.items, obj] });
-    console.log([...this.state.items, obj]);
+      title: task,
+      day: day,
+      time: time,
+      isDone: false,
+    }
+
+    tasks.push(obj)
+    console.log(tasks)
   }
 
   render() {
@@ -33,13 +36,15 @@ class App extends Component {
       <div>
         <h1>ToDo App in ReactJS</h1>
         <AddTodo
-          inputValue={this.state.inputValue}
+          task={{ taskTitle: this.state.taskTitle, taskTime: this.state.taskTime,
+            taskDay: this.state.taskDay
+          }}
           handleChange={this.handleChange}
           addTask={this.addTask}
         />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

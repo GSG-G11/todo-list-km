@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-
-const AddTodo = ({ inputValue, handleChange, addTask }) => {
+const AddTodo = ({ task:{taskTitle, taskTime, taskDay}, handleChange, addTask }) => {
+  console.log(taskTitle);
   return (
     <div>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleChange}
-      />
-      <button onClick={() =>addTask(inputValue)}>
-        Add
-      </button>
+      <input type="text" value={taskTitle} onChange={handleChange} />
+      <button onClick={() => addTask(taskTitle, taskDay, taskTime)}>Add</button>
     </div>
   );
 };
