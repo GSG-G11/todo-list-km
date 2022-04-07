@@ -25,13 +25,13 @@
 - As a user, I will be able to delete tasks I have.
 - As a user, I will be able to mark task as a completed.
 
-<a href="#tasks-application-✔" style="font-size:14px;">Back To Top</a>
+
 ---
 ### 🔗 Live Link
 
 [Tasks App](https://tasks-app-km.netlify.app/)
 
-<a href="#tasks-application-✔" style="font-size:14px;">Back To Top</a>
+
 ---
 
 ## 📌 How To Use
@@ -49,7 +49,7 @@
 
     npm run start
 ```
-<a href="#tasks-application-✔" style="font-size:14px;">Back To Top</a>
+
 ---
 
 ## 🛠️ Technologies & Tools
@@ -62,12 +62,10 @@
 - NPM
 - Local Storage
 
-<a href="#tasks-application-✔" style="font-size:14px;">Back To Top</a>
+
 ---
 
 ## 👪 Authors
 
 - Karam Zomlot - [@karam-zomlut](https://github.com/karam-zomlut)
 - Mohammed Heles - [@mo7amedehab97](https://github.com/mo7amedehab97)
-
-<a href="#tasks-application-✔" style="font-size:14px;">Back To Top</a>
