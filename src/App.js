@@ -8,6 +8,9 @@ import NoTasks from './components/NoTasks'
 // Import CSS
 import './App.css'
 import 'remixicon/fonts/remixicon.css'
+
+// Get from Local Storage
+const storedTasks = JSON.parse(window.localStorage.getItem('tasks'));
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class App extends Component {
       openAdd: false,
       editMode: false,
       thisTask: '',
-      tasks: [],
+      tasks: storedTasks || [],
     };
   }
 
@@ -84,6 +87,8 @@ class App extends Component {
   render() {
     const { taskTitle, taskDay, taskTime, openAdd, tasks, editMode, thisTask } =
       this.state;
+    // Store to local storage
+    window.localStorage.setItem('tasks', JSON.stringify(tasks))
     return (
       <div className='container'>
         <HeaderPage />
